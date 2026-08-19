@@ -71,6 +71,8 @@ body {
 img { display: block; max-width: 100%; }
 a { color: inherit; text-decoration: none; }
 button { font-family: inherit; cursor: pointer; border: none; background: none; }
+a, button { -webkit-tap-highlight-color: transparent; }
+.btn, .num, .faq-item__q { touch-action: manipulation; } /* sin delay de doble-tap en táctil */
 ul, ol { list-style: none; }
 em { font-style: italic; }
 
@@ -1076,7 +1078,8 @@ em { font-style: italic; }
 /* ═══ BOTTOM BAR MÓVIL ═════════════════════════════ */
 .bottombar {
   position: fixed;
-  left: 12px; right: 12px; bottom: 12px;
+  left: 12px; right: 12px;
+  bottom: calc(12px + env(safe-area-inset-bottom));
   z-index: 90;
   display: none;
   align-items: center;
@@ -1199,7 +1202,7 @@ em { font-style: italic; }
 .field input {
   width: 100%;
   font-family: inherit;
-  font-size: 15.5px;
+  font-size: 16px; /* ≥16px evita el zoom automático de iOS al enfocar */
   padding: 14px 16px;
   background: var(--white);
   border: 1.5px solid #e5dfd2;
@@ -1398,8 +1401,34 @@ em { font-style: italic; }
   box-shadow: var(--shadow-sm);
 }
 
-/* ═══ TOASTS ═══════════════════════════════════════ */
-.toasts {
+/* ═══ VOLVER ARRIBA ════════════════════════════════ */
+.to-top {
+  position: fixed;
+  right: 20px;
+  bottom: calc(24px + env(safe-area-inset-bottom));
+  z-index: 80;
+  width: 48px; height: 48px;
+  display: grid;
+  place-items: center;
+  background: var(--green);
+  color: var(--white);
+  border-radius: 50%;
+  box-shadow: var(--shadow-green);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(14px);
+  transition: opacity 0.3s var(--ease), transform 0.3s var(--ease),
+              visibility 0.3s, background 0.2s;
+}
+.to-top.is-visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+.to-top:hover { background: var(--green-2); transform: translateY(-3px); }
+.to-top:active { transform: scale(0.92); }
+
+/* ═══ TOASTS ═══════════════════════════════════════ */.toasts {
   position: fixed;
   bottom: 24px;
   left: 50%;
@@ -1471,6 +1500,14 @@ em { font-style: italic; }
 @media (max-width: 1020px) {
   .raffle__layout { grid-template-columns: 1fr; }
   .summary { position: static; display: none; }
+
+  /* El resumen sticky se reemplaza por la bottom bar también en tablet */
+  .bottombar { display: flex; }
+  .to-top { bottom: calc(96px + env(safe-area-inset-bottom)); }
+  body:has(.bottombar.is-visible) .toasts { bottom: 96px; }
+  /* Que la bottom bar nunca tape el final del footer */
+  .footer__bottom { padding-bottom: 104px; }
+
   .impact__grid { grid-template-columns: repeat(2, 1fr); }
   .stories__grid, .steps { grid-template-columns: repeat(2, 1fr); }
   .metrics { grid-template-columns: repeat(2, 1fr); gap: 28px; }
@@ -1518,9 +1555,6 @@ em { font-style: italic; }
   .number-grid { grid-template-columns: repeat(5, 1fr); gap: 9px; }
   .num { font-size: 15px; border-radius: 13px; min-height: 52px; }
   .num--available:hover::after { display: none; } /* sin tooltip en táctil */
-
-  .bottombar { display: flex; }
-  body:has(.bottombar.is-visible) .toasts { bottom: 96px; }
 
   .stories__grid, .steps, .impact__grid { grid-template-columns: 1fr; }
   .hero__ctas .btn { flex: 1 1 100%; }

@@ -108,6 +108,18 @@ function initNavbar() {
   );
 }
 
+/* ── Volver arriba ───────────────────────────────────── */
+function initToTop() {
+  const btn = $("#toTop");
+  const onScroll = () =>
+    btn.classList.toggle("is-visible", window.scrollY > 600);
+  window.addEventListener("scroll", onScroll, { passive: true });
+  onScroll();
+  btn.addEventListener("click", () =>
+    window.scrollTo({ top: 0, behavior: "smooth" })
+  );
+}
+
 /* ── Countdown ───────────────────────────────────────────── */
 function initCountdown() {
   const target = new Date(CONFIG.raffle.drawDate).getTime();
@@ -625,6 +637,7 @@ function initCheckout() {
 async function init() {
   renderStaticContent();
   initNavbar();
+  initToTop();
   initCountdown();
   initCheckout();
   $("#luckyBtn").addEventListener("click", pickLucky);
