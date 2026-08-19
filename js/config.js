@@ -1,0 +1,139 @@
+/**
+ * ═══════════════════════════════════════════════════════════
+ *  FADA — Configuración central de la rifa
+ *  Edita AQUÍ todos los datos de negocio. Nada más en la app
+ *  debería hardcodear precios, premios, fechas ni contactos.
+ * ═══════════════════════════════════════════════════════════
+ */
+
+export const CONFIG = {
+  foundation: {
+    name: "FADA",
+    fullName: "Fundación de Ayuda para Perros y Gatos",
+    email: "hola@fada.org",
+  },
+
+  /** WhatsApp de contacto en formato internacional sin "+" ni espacios. */
+  whatsappNumber: "573144713476",
+
+  /**
+   * 💜 PAGO CON NEQUI — transferencia Nequi → Nequi.
+   * Ojo: Nequi NO permite pre-llenar monto/destino desde una URL web;
+   * la persona digita el número y el valor en su app. Para cobro
+   * automático (pago push) se necesita la API de Nequi para comercios
+   * — ver data.js.
+   */
+  nequi: {
+    phone: "3144713476",            // número Nequi destino
+    accountHolder: "Fundación FADA",
+    webUrl: "https://www.nequi.com.co",
+  },
+
+  raffle: {
+    pricePerNumber: 10000,          // COP
+    totalNumbers: 100,              // 1..100
+    currency: "COP",
+    locale: "es-CO",
+    /** Fecha objetivo del sorteo (ISO 8601 con zona horaria). La cuenta regresiva usa este valor. */
+    drawDate: "2026-09-05T19:00:00-05:00",
+    /** Cómo se elige el ganador — se muestra tal cual en la sección del premio. */
+    winningCriteria: "Últimas 3 cifras de la Lotería de Medellín",
+  },
+
+  prize: {
+    name: "2 colonias de tu elección",
+    approxValue: 700000,            // COP (valor aproximado de las dos colonias)
+    description:
+      "Dos colonias originales de las mejores marcas, nuevas y selladas. " +
+      "Si ganas, tú eliges las referencias que más te gusten. " +
+      "Participa con tu número de la suerte y, de paso, ayuda a los 63 " +
+      "perritos y a los gatitos que cuidamos en FADA.",
+    image:
+      "https://images.unsplash.com/photo-1541643600914-78b084683601?q=80&w=1200&auto=format&fit=crop",
+    conditions:
+      "El ganador se contactará por WhatsApp y correo dentro de las 24 horas siguientes al sorteo, " +
+      "y podrá elegir sus dos colonias del catálogo disponible. " +
+      "El premio se entrega en persona o se envía a cualquier ciudad de Colombia sin costo. " +
+      "Si el número ganador no fue vendido, se repite el sorteo con la siguiente lotería.",
+  },
+
+  /** 📊 Datos reales de la fundación — actualizar cuando cambien. */
+  stats: {
+    dogsInFoundation: 63,           // perritos actualmente en la fundación
+    catsRescued: 24,                // gatitos rescatados
+    foodDaysFunded: 210,            // días de alimento que financia esta rifa
+    impact: { foodDays: 210, vetTreatments: 26, recentRescues: 14, adoptions: 38 },
+  },
+
+  stories: [
+    {
+      name: "Luna",
+      status: "recovery", // rescued | recovery | adopted
+      statusLabel: "En recuperación",
+      text: "Fue encontrada en condiciones críticas junto a una carretera. Hoy come sola, gana peso y espera una familia.",
+      image: "https://images.unsplash.com/photo-1543466835-00a7907e9de1?q=80&w=900&auto=format&fit=crop",
+    },
+    {
+      name: "Simón",
+      status: "adopted",
+      statusLabel: "Adoptado",
+      text: "Llegó desconfiado y lleno de miedo. Tres meses después conquistó a su nueva familia… y a su sofá favorito.",
+      image: "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?q=80&w=900&auto=format&fit=crop",
+    },
+    {
+      name: "Rocky",
+      status: "rescued",
+      statusLabel: "Rescatado",
+      text: "Vivía atado a un poste. Ahora corre todos los días en el patio de la fundación mientras encuentra hogar.",
+      image: "https://images.unsplash.com/photo-1548767797-d8c844163c4c?q=80&w=900&auto=format&fit=crop",
+    },
+    {
+      name: "Mía",
+      status: "adopted",
+      statusLabel: "Adoptada",
+      text: "La recogimos con sus tres gatitos. Todos encontraron hogar. Mía ronronea en brazos de su nueva mamá.",
+      image: "https://images.unsplash.com/photo-1573865526739-10659fec78a5?q=80&w=900&auto=format&fit=crop",
+    },
+    {
+      name: "Toby",
+      status: "recovery",
+      statusLabel: "En recuperación",
+      text: "Un criollito noble que está superando una cirugía de cadera gracias al aporte de personas como tú. Falta poco para que esté listo para adopción.",
+      image: "https://images.unsplash.com/photo-1558788353-f76d92427f16?q=80&w=900&auto=format&fit=crop",
+    },
+    {
+      name: "Nala",
+      status: "rescued",
+      statusLabel: "Rescatada",
+      text: "Apareció en un parque, desnutrida. Hoy es la primera en saludar a quien visita la fundación.",
+      image: "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?q=80&w=900&auto=format&fit=crop",
+    },
+  ],
+
+  faq: [
+    {
+      q: "¿Cómo sé que el sorteo es transparente?",
+      a: "El número ganador se define con las últimas cifras de una lotería nacional (no lo elegimos nosotros) y el sorteo se transmite en vivo por nuestras redes. Publicamos el resultado y al ganador el mismo día.",
+    },
+    {
+      q: "¿Cómo reservo mis números?",
+      a: "Elige tus números en la tabla, completa tus datos y realiza el pago. También puedes continuar por WhatsApp: te enviaremos un mensaje con tu selección lista para confirmar.",
+    },
+    {
+      q: "¿Qué pasa si compro un número y no gano?",
+      a: "Tu aporte igual cumplió su propósito: el 100% de lo recaudado se destina a alimentación, veterinaria, rescate y preparación para adopción de nuestros animales.",
+    },
+    {
+      q: "¿Cuándo y cómo me entero si gané?",
+      a: "Te contactamos por WhatsApp y correo dentro de las 24 horas siguientes al sorteo. También publicamos el resultado en nuestras redes oficiales.",
+    },
+    {
+      q: "¿Puedo comprar números desde fuera de Colombia?",
+      a: "Sí. Escríbenos por WhatsApp y coordinamos un método de pago internacional. El premio se entrega en Colombia o se coordina con el ganador.",
+    },
+    {
+      q: "¿Qué pasa si el número ganador no fue vendido?",
+      a: "El sorteo se repite con los resultados de la siguiente lotería, hasta que el premio tenga dueño. Nunca nos quedamos con el premio.",
+    },
+  ],
+};

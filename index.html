@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Participa en la rifa de FADA y ayuda a perros y gatos rescatados. Elige tu número, cambia una vida." />
+  <title>FADA — Rifa solidaria · Elige tu número, cambia una vida</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐾</text></svg>" />
+</head>
+<body>
+
+  <!-- ══════════════ NAVBAR ══════════════ -->
+  <header class="navbar" id="navbar">
+    <div class="navbar__inner container">
+      <a href="#hero" class="brand" data-scroll>
+        <span class="brand__mark">🐾</span>
+        <span class="brand__name">FADA</span>
+        <span class="brand__tag">Fundación</span>
+      </a>
+
+      <nav class="navbar__links" id="navLinks">
+        <a href="#rifa" data-scroll>Rifa</a>
+        <a href="#premio" data-scroll>El premio</a>
+        <a href="#impacto" data-scroll>Impacto</a>
+        <a href="#historias" data-scroll>Historias</a>
+        <a href="#faq" data-scroll>Preguntas</a>
+        <a href="#rifa" class="btn btn--primary btn--sm navbar__cta-mobile" data-scroll>Elegir número</a>
+      </nav>
+
+      <div class="navbar__actions">
+        <a href="#rifa" class="btn btn--primary btn--sm navbar__cta" data-scroll>Elegir número</a>
+        <button class="navbar__burger" id="burger" aria-label="Abrir menú" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ══════════════ HERO ══════════════ -->
+    <section class="hero" id="hero">
+      <div class="hero__bg" aria-hidden="true"></div>
+      <div class="container hero__grid">
+
+        <div class="hero__content">
+          <span class="pill pill--soft reveal">
+            <span class="pill__dot"></span> Rifa solidaria activa
+          </span>
+          <h1 class="hero__title reveal">
+            Elige tu número.<br />
+            <em>Cambia una vida.</em>
+          </h1>
+          <p class="hero__subtitle reveal">
+            Cada número que compras alimenta, sana y acerca a un hogar
+            a los perros y gatos que rescatamos en FADA.
+          </p>
+
+          <div class="hero__meta reveal">
+            <div class="hero__meta-item">
+              <span class="hero__meta-label">Número desde</span>
+              <span class="hero__meta-value" id="heroPrice">$10.000</span>
+            </div>
+            <div class="hero__meta-divider"></div>
+            <div class="hero__meta-item">
+              <span class="hero__meta-label">Premio</span>
+              <span class="hero__meta-value" id="heroPrize">—</span>
+            </div>
+          </div>
+
+          <div class="hero__ctas reveal">
+            <a href="#rifa" class="btn btn--primary btn--lg" data-scroll>
+              Elegir mi número <span class="btn__arrow">→</span>
+            </a>
+            <a href="#impacto" class="btn btn--ghost btn--lg" data-scroll>Conocer FADA</a>
+          </div>
+
+          <div class="hero__trust reveal">
+            <div class="hero__avatars" aria-hidden="true">
+              <span>🐶</span><span>🐱</span><span>❤️</span>
+            </div>
+            <p><strong id="heroParticipants">0</strong> números ya tienen dueño en esta rifa</p>
+          </div>
+        </div>
+
+        <div class="hero__visual reveal">
+          <figure class="hero__photo">
+            <img
+              src="https://images.unsplash.com/photo-1552053831-71594a27632d?q=80&w=1200&auto=format&fit=crop"
+              alt="Perro rescatado por FADA mirando a cámara" loading="eager" />
+          </figure>
+
+          <div class="float-card float-card--tl glass">
+            <span class="float-card__emoji">🐶</span>
+            <div>
+              <strong data-stat="perros">—</strong>
+              <small>perritos en la fundación</small>
+            </div>
+          </div>
+
+          <div class="float-card float-card--br glass">
+            <span class="float-card__emoji">🐱</span>
+            <div>
+              <strong data-stat="gatos">—</strong>
+              <small>gatitos rescatados</small>
+            </div>
+          </div>
+
+          <div class="float-card float-card--bl glass">
+            <span class="float-card__emoji">❤️</span>
+            <div>
+              <strong>Tu número ayuda</strong>
+              <small>a financiar su recuperación</small>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ══════════════ COUNTDOWN ══════════════ -->
+    <section class="countdown-band">
+      <div class="container countdown-band__inner">
+        <div class="countdown-band__text">
+          <span class="countdown-band__eyebrow">⏳ El sorteo está cada vez más cerca</span>
+          <strong id="drawDateLabel">—</strong>
+        </div>
+        <div class="countdown" id="countdown" role="timer" aria-label="Cuenta regresiva para el sorteo">
+          <div class="countdown__cell"><span id="cdDays">00</span><small>días</small></div>
+          <div class="countdown__sep">:</div>
+          <div class="countdown__cell"><span id="cdHours">00</span><small>horas</small></div>
+          <div class="countdown__sep">:</div>
+          <div class="countdown__cell"><span id="cdMins">00</span><small>min</small></div>
+          <div class="countdown__sep">:</div>
+          <div class="countdown__cell"><span id="cdSecs">00</span><small>seg</small></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════ PREMIO ══════════════ -->
+    <section class="section prize" id="premio">
+      <div class="container prize__grid">
+        <div class="prize__visual reveal">
+          <span class="badge badge--prize">🏆 Premio de la rifa</span>
+          <figure class="prize__photo">
+            <img id="prizeImage" src="" alt="Premio principal de la rifa FADA" loading="lazy" />
+          </figure>
+          <div class="prize__value-chip glass">
+            <small>Valor aproximado</small>
+            <strong id="prizeValue">—</strong>
+          </div>
+        </div>
+
+        <div class="prize__content reveal">
+          <span class="section__eyebrow">El premio</span>
+          <h2 class="section__title" id="prizeName">—</h2>
+          <p class="section__lead" id="prizeDescription">—</p>
+
+          <ul class="prize__facts">
+            <li>
+              <span class="prize__fact-icon">📅</span>
+              <div><small>Fecha del sorteo</small><strong id="prizeDrawDate">—</strong></div>
+            </li>
+            <li>
+              <span class="prize__fact-icon">🎟️</span>
+              <div><small>Número ganador</small><strong id="prizeWinCriteria">—</strong></div>
+            </li>
+            <li>
+              <span class="prize__fact-icon">📜</span>
+              <div><small>Transparencia</small><strong>Sorteo transmitido en vivo</strong></div>
+            </li>
+          </ul>
+
+          <p class="prize__conditions" id="prizeConditions">—</p>
+
+          <a href="#rifa" class="btn btn--primary btn--lg" data-scroll>
+            Quiero participar <span class="btn__arrow">→</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════ SELECTOR DE NÚMEROS ══════════════ -->
+    <section class="section raffle" id="rifa">
+      <div class="container">
+        <div class="section__header reveal">
+          <span class="section__eyebrow">La rifa</span>
+          <h2 class="section__title">Elige tu número de la suerte</h2>
+          <p class="section__lead">
+            Selecciona uno o varios números. Cada uno es una oportunidad de ganar
+            <em>y</em> una ayuda directa para nuestros rescatados.
+          </p>
+        </div>
+
+        <div class="raffle__progress reveal">
+          <div class="raffle__progress-info">
+            <strong><span id="soldCount">0</span> de <span id="totalCount">100</span> números vendidos</strong>
+            <span id="availableHint">—</span>
+          </div>
+          <div class="raffle__progress-bar">
+            <div class="raffle__progress-fill" id="progressFill" style="width:0%"></div>
+          </div>
+        </div>
+
+        <div class="raffle__layout">
+
+          <!-- Grid -->
+          <div class="raffle__board reveal">
+            <div class="raffle__toolbar">
+              <div class="legend">
+                <span class="legend__item"><i class="dot dot--available"></i> Disponible</span>
+                <span class="legend__item"><i class="dot dot--selected"></i> Tu selección</span>
+                <span class="legend__item"><i class="dot dot--reserved"></i> Reservado</span>
+                <span class="legend__item"><i class="dot dot--sold"></i> Vendido</span>
+              </div>
+              <button class="btn btn--soft btn--sm" id="luckyBtn" type="button">
+                🎲 Sorpréndeme
+              </button>
+            </div>
+
+            <div class="number-grid" id="numberGrid" role="grid" aria-label="Números de la rifa"></div>
+          </div>
+
+          <!-- Resumen sticky (desktop) -->
+          <aside class="summary reveal" id="summaryPanel">
+            <div class="summary__card">
+              <h3 class="summary__title">Tu participación</h3>
+
+              <div class="summary__numbers" id="summaryNumbers">
+                <p class="summary__empty" id="summaryEmpty">
+                  Aún no has elegido números.<br />Toca los disponibles para empezar ✨
+                </p>
+              </div>
+
+              <div class="summary__rows">
+                <div class="summary__row">
+                  <span>Cantidad</span>
+                  <strong id="summaryQty">0</strong>
+                </div>
+                <div class="summary__row">
+                  <span>Precio por número</span>
+                  <strong id="summaryUnit">—</strong>
+                </div>
+                <div class="summary__row summary__row--total">
+                  <span>Total</span>
+                  <strong id="summaryTotal">$0</strong>
+                </div>
+              </div>
+
+              <button class="btn btn--primary btn--block btn--lg" id="checkoutBtn" type="button" disabled>
+                Continuar <span class="btn__arrow">→</span>
+              </button>
+
+              <p class="summary__note">
+                🔒 Tus números quedan reservados mientras completas el pago.
+              </p>
+            </div>
+          </aside>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════ IMPACTO ══════════════ -->
+    <section class="section impact" id="impacto">
+      <div class="container">
+        <div class="section__header reveal">
+          <span class="section__eyebrow">Tu impacto</span>
+          <h2 class="section__title">Tu número es mucho más<br />que una oportunidad de ganar</h2>
+          <p class="section__lead">
+            El 100% de lo recaudado se destina al bienestar de nuestros rescatados.
+            Esto es exactamente lo que hace posible tu participación:
+          </p>
+        </div>
+
+        <div class="impact__grid">
+          <article class="impact-card reveal">
+            <span class="impact-card__icon">🐾</span>
+            <h3>Alimentación</h3>
+            <p>Garantizas concentrado y alimento húmedo para perros y gatos en recuperación.</p>
+            <div class="impact-card__bar"><span style="--w:78%"></span></div>
+            <small>Equivale a <strong data-impact="food">—</strong> días de alimento</small>
+          </article>
+
+          <article class="impact-card reveal">
+            <span class="impact-card__icon">🩺</span>
+            <h3>Veterinaria</h3>
+            <p>Contribuyes a vacunas, desparasitación, tratamientos y emergencias médicas.</p>
+            <div class="impact-card__bar"><span style="--w:64%"></span></div>
+            <small>Apoya <strong data-impact="vet">—</strong> tratamientos al mes</small>
+          </article>
+
+          <article class="impact-card reveal">
+            <span class="impact-card__icon">🏠</span>
+            <h3>Rescate</h3>
+            <p>Haces posible que más animales en la calle puedan ser rescatados a tiempo.</p>
+            <div class="impact-card__bar"><span style="--w:52%"></span></div>
+            <small>Financia <strong data-impact="rescue">—</strong> rescates recientes</small>
+          </article>
+
+          <article class="impact-card reveal">
+            <span class="impact-card__icon">❤️</span>
+            <h3>Adopción</h3>
+            <p>Ayudas a prepararlos — sanos y sociables — para encontrar una familia.</p>
+            <div class="impact-card__bar"><span style="--w:71%"></span></div>
+            <small><strong data-impact="adoption">—</strong> adopciones logradas</small>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════ HISTORIAS ══════════════ -->
+    <section class="section stories" id="historias">
+      <div class="container">
+        <div class="section__header reveal">
+          <span class="section__eyebrow">Historias reales</span>
+          <h2 class="section__title">Ellos también tienen una historia</h2>
+          <p class="section__lead">
+            Detrás de cada número hay hocicos, ronroneos y segundas oportunidades.
+          </p>
+        </div>
+        <div class="stories__grid" id="storiesGrid"><!-- render por JS --></div>
+      </div>
+    </section>
+
+    <!-- ══════════════ CÓMO FUNCIONA + MÉTRICAS ══════════════ -->
+    <section class="section how" id="como-funciona">
+      <div class="container">
+        <div class="section__header reveal">
+          <span class="section__eyebrow">Cada participación cuenta</span>
+          <h2 class="section__title">¿Cómo funciona?</h2>
+        </div>
+
+        <ol class="steps">
+          <li class="step reveal">
+            <span class="step__num">1</span>
+            <h3>Elige tus números</h3>
+            <p>Explora la tabla y selecciona tus favoritos, o deja que el azar decida.</p>
+          </li>
+          <li class="step reveal">
+            <span class="step__num">2</span>
+            <h3>Completa tus datos</h3>
+            <p>Solo nombre, WhatsApp y correo. Nada de formularios eternos.</p>
+          </li>
+          <li class="step reveal">
+            <span class="step__num">3</span>
+            <h3>Paga con Nequi</h3>
+            <p>Haz una transferencia Nequi → Nequi por el valor exacto de tus números.</p>
+          </li>
+          <li class="step reveal">
+            <span class="step__num">4</span>
+            <h3>Recibe tu confirmación</h3>
+            <p>Tus números quedan registrados a tu nombre. Ya son tuyos.</p>
+          </li>
+          <li class="step reveal">
+            <span class="step__num">5</span>
+            <h3>Espera el sorteo</h3>
+            <p>Transmitimos el sorteo en vivo para total transparencia.</p>
+          </li>
+          <li class="step reveal">
+            <span class="step__num">6</span>
+            <h3>Ayudaste a FADA</h3>
+            <p>Ganes o no, tu aporte ya alimentó y cuidó a nuestros rescatados. ❤️</p>
+          </li>
+        </ol>
+
+        <div class="metrics reveal" id="metrics">
+          <div class="metric">
+            <strong class="metric__value" data-counter id="metricDogs">0</strong>
+            <span>Perritos en la fundación</span>
+          </div>
+          <div class="metric">
+            <strong class="metric__value" data-counter id="metricCats">0</strong>
+            <span>Gatitos rescatados</span>
+          </div>
+          <div class="metric">
+            <strong class="metric__value" data-counter id="metricAvailable">0</strong>
+            <span>Números disponibles</span>
+          </div>
+          <div class="metric">
+            <strong class="metric__value" data-counter id="metricFood">0</strong>
+            <span>Días de alimento que financia esta rifa</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════ FAQ ══════════════ -->
+    <section class="section faq" id="faq">
+      <div class="container container--narrow">
+        <div class="section__header reveal">
+          <span class="section__eyebrow">Preguntas frecuentes</span>
+          <h2 class="section__title">Todo claro, sin letra pequeña</h2>
+        </div>
+        <div class="faq__list" id="faqList"><!-- render por JS --></div>
+      </div>
+    </section>
+
+    <!-- ══════════════ CTA FINAL ══════════════ -->
+    <section class="final-cta">
+      <div class="container final-cta__inner reveal">
+        <h2>Un número para ti.<br /><em>Una vida para ellos.</em></h2>
+        <p>Quedan pocos números disponibles. Elige el tuyo antes del sorteo.</p>
+        <a href="#rifa" class="btn btn--light btn--lg" data-scroll>
+          Elegir mi número <span class="btn__arrow">→</span>
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ══════════════ FOOTER ══════════════ -->
+  <footer class="footer">
+    <div class="container footer__grid">
+      <div class="footer__brand">
+        <a href="#hero" class="brand brand--footer" data-scroll>
+          <span class="brand__mark">🐾</span>
+          <span class="brand__name">FADA</span>
+        </a>
+        <p>Fundación de Ayuda para Perros y Gatos.<br />Rescatamos, cuidamos y encontramos hogares.</p>
+      </div>
+      <nav class="footer__nav">
+        <strong>Rifa</strong>
+        <a href="#premio" data-scroll>El premio</a>
+        <a href="#rifa" data-scroll>Elegir número</a>
+        <a href="#como-funciona" data-scroll>Cómo funciona</a>
+      </nav>
+      <nav class="footer__nav">
+        <strong>FADA</strong>
+        <a href="#impacto" data-scroll>Impacto</a>
+        <a href="#historias" data-scroll>Historias</a>
+        <a href="#faq" data-scroll>Preguntas</a>
+      </nav>
+      <div class="footer__nav">
+        <strong>Contacto</strong>
+        <a href="#" id="footerWhatsapp" target="_blank" rel="noopener">WhatsApp</a>
+        <a href="mailto:hola@fada.org">hola@fada.org</a>
+        <a href="#" target="_blank" rel="noopener">Instagram</a>
+      </div>
+    </div>
+    <div class="container footer__bottom">
+      <span>© <span id="year"></span> Fundación FADA. Hecho con ❤️ para ellos.</span>
+    </div>
+  </footer>
+
+  <!-- ══════════════ BOTTOM BAR MÓVIL ══════════════ -->
+  <div class="bottombar" id="bottombar" aria-hidden="true">
+    <div class="bottombar__info">
+      <div class="bottombar__numbers" id="bottombarNumbers">—</div>
+      <strong id="bottombarTotal">$0</strong>
+    </div>
+    <button class="btn btn--primary" id="bottombarBtn" type="button">
+      Continuar <span class="btn__arrow">→</span>
+    </button>
+  </div>
+
+  <!-- ══════════════ MODAL CHECKOUT ══════════════ -->
+  <div class="modal" id="checkoutModal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="modal__backdrop" data-modal-close></div>
+    <div class="modal__panel">
+      <button class="modal__close" data-modal-close aria-label="Cerrar">✕</button>
+
+      <!-- Paso 1: datos -->
+      <div class="modal__step" data-step="1">
+        <span class="modal__eyebrow">Paso 1 de 2</span>
+        <h3 class="modal__title">Tus datos</h3>
+        <p class="modal__sub">Te enviaremos la confirmación y el resultado del sorteo.</p>
+
+        <div class="modal__chips" id="modalNumbersChips"></div>
+        <div class="modal__total">
+          <span>Total a pagar</span>
+          <strong id="modalTotal">$0</strong>
+        </div>
+
+        <form id="checkoutForm" novalidate>
+          <label class="field">
+            <span>Nombre completo</span>
+            <input type="text" id="fieldName" name="name" placeholder="Ej: Laura Gómez" autocomplete="name" />
+            <small class="field__error" data-error-for="fieldName"></small>
+          </label>
+          <label class="field">
+            <span>WhatsApp</span>
+            <input type="tel" id="fieldPhone" name="phone" placeholder="Ej: 300 123 4567" autocomplete="tel" inputmode="tel" />
+            <small class="field__error" data-error-for="fieldPhone"></small>
+          </label>
+          <label class="field">
+            <span>Email</span>
+            <input type="email" id="fieldEmail" name="email" placeholder="tucorreo@email.com" autocomplete="email" inputmode="email" />
+            <small class="field__error" data-error-for="fieldEmail"></small>
+          </label>
+          <button class="btn btn--primary btn--block btn--lg" type="submit">
+            Ir al pago <span class="btn__arrow">→</span>
+          </button>
+        </form>
+      </div>
+
+      <!-- Paso 2: pago -->
+      <div class="modal__step" data-step="2" hidden>
+        <span class="modal__eyebrow">Paso 2 de 2</span>
+        <h3 class="modal__title">Paga con Nequi</h3>
+        <p class="modal__sub" id="paymentSummary">—</p>
+
+        <!-- Tarjeta de transferencia Nequi -->
+        <div class="nequi-card">
+          <div class="nequi-card__head">
+            <span class="nequi-card__logo">Nequi</span>
+            <span class="nequi-card__badge">Transferencia Nequi → Nequi</span>
+          </div>
+
+          <div class="nequi-card__row">
+            <div>
+              <small>Envía a este número</small>
+              <strong id="nequiPhone">—</strong>
+            </div>
+            <button class="copy-btn" type="button" data-copy="nequiPhone">Copiar</button>
+          </div>
+
+          <div class="nequi-card__row">
+            <div>
+              <small>Valor exacto a transferir</small>
+              <strong id="nequiAmount">—</strong>
+            </div>
+            <button class="copy-btn" type="button" data-copy="nequiAmountRaw">Copiar</button>
+          </div>
+
+          <div class="nequi-card__row">
+            <div>
+              <small>A nombre de</small>
+              <strong id="nequiHolder">—</strong>
+            </div>
+          </div>
+
+          <div class="nequi-card__ref">
+            Referencia: <strong id="nequiRef">—</strong>
+            <span>(escríbela en el mensaje de la transferencia)</span>
+          </div>
+        </div>
+
+        <a class="btn btn--nequi btn--block btn--lg" id="openNequiBtn" href="#" target="_blank" rel="noopener">
+          Abrir Nequi para pagar →
+        </a>
+
+        <ol class="nequi-steps">
+          <li>Abre Nequi y elige <strong>Enviar plata</strong>.</li>
+          <li>Transfiere al número de arriba el <strong>valor exacto</strong>.</li>
+          <li>Vuelve aquí y confirma tu pago por WhatsApp.</li>
+        </ol>
+
+        <button class="btn btn--whatsapp btn--block btn--lg" id="whatsappBtn" type="button">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.5 0 1.47 1.07 2.9 1.22 3.1.15.2 2.11 3.22 5.1 4.51.71.31 1.27.49 1.7.63.72.23 1.37.2 1.88.12.57-.09 1.76-.72 2.01-1.42.25-.7.25-1.3.17-1.42-.07-.12-.27-.2-.57-.35M12.05 21.8h-.01a9.87 9.87 0 0 1-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.82 9.82 0 0 1-1.51-5.26c0-5.44 4.43-9.87 9.88-9.87a9.82 9.82 0 0 1 9.87 9.88c0 5.44-4.43 9.87-9.87 9.87M20.5 3.5A11.8 11.8 0 0 0 12.04 0C5.5 0 .16 5.34.16 11.9c0 2.1.55 4.14 1.59 5.95L.06 24l6.3-1.65a11.9 11.9 0 0 0 5.68 1.45h.01c6.54 0 11.87-5.34 11.87-11.9 0-3.18-1.24-6.17-3.42-8.4"/></svg>
+          Ya pagué · Confirmar por WhatsApp
+        </button>
+
+        <button class="modal__back" data-goto-step="1" type="button">← Volver a mis datos</button>
+      </div>
+
+      <!-- Paso 3: confirmación -->
+      <div class="modal__step modal__step--success" data-step="3" hidden>
+        <div class="success-anim">
+          <span class="success-anim__circle">
+            <svg viewBox="0 0 52 52"><path d="M14 27l8 8 16-16" fill="none"/></svg>
+          </span>
+        </div>
+        <h3 class="modal__title">¡Ya tienes tu número! 🎉</h3>
+        <p class="modal__sub" id="successMessage">—</p>
+        <div class="modal__chips modal__chips--success" id="successChips"></div>
+        <p class="success-note">
+          Recibirás la confirmación por WhatsApp y correo.
+          El sorteo se transmitirá en vivo. <strong>¡Mucha suerte y gracias por ayudar! ❤️</strong>
+        </p>
+        <button class="btn btn--primary btn--block" data-modal-close type="button">Listo</button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Toasts -->
+  <div class="toasts" id="toasts" aria-live="polite"></div>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
