@@ -49,7 +49,7 @@ function toast(message, type = "default", duration = 3200) {
 
 /* ── Confetti ────────────────────────────────────────────── */
 function confetti(pieces = 90) {
-  const colors = ["#1e4634", "#7a9b76", "#e8973d", "#ffd9a3", "#2c5c46"];
+  const colors = ["#f1553c", "#f2a73b", "#0f3b3d", "#4f9e90", "#d8402a"];
   for (let i = 0; i < pieces; i++) {
     const el = document.createElement("span");
     el.className = "confetti-piece";
