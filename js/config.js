@@ -43,7 +43,7 @@ export const CONFIG = {
 
   prize: {
     name: "2 colonias de tu elección",
-    approxValue: 700000,            // COP (valor aproximado de las dos colonias)
+    approxValue: 200000,            // COP (valor aproximado de las dos colonias)
     description:
       "Dos colonias originales de las mejores marcas, nuevas y selladas. " +
       "Si ganas, tú eliges las referencias que más te gusten. " +
@@ -54,8 +54,7 @@ export const CONFIG = {
     conditions:
       "El ganador se contactará por WhatsApp y correo dentro de las 24 horas siguientes al sorteo, " +
       "y podrá elegir sus dos colonias del catálogo disponible. " +
-      "El premio se entrega en persona o se envía a cualquier ciudad de Colombia sin costo. " +
-      "Si el número ganador no fue vendido, se repite el sorteo con la siguiente lotería.",
+      "El premio se entrega en persona o se envía a cualquier ciudad de Colombia sin costo.",
   },
 
   /** 📊 Datos reales de la fundación — actualizar cuando cambien. */
@@ -68,6 +67,9 @@ export const CONFIG = {
   },
 
   stories: [
+    // 📸 Fotos placeholder (Unsplash). Cuando tengas las fotos reales,
+    // guárdalas en la carpeta img/ y cambia cada `image` por su ruta
+    // local, ej: image: "img/luna.jpg" — ver img/README.md
     {
       name: "Luna",
       status: "recovery", // rescued | recovery | adopted
@@ -132,10 +134,6 @@ export const CONFIG = {
     {
       q: "¿Puedo comprar números desde fuera de Colombia?",
       a: "Sí. Escríbenos por WhatsApp y coordinamos un método de pago internacional. El premio se entrega en Colombia o se coordina con el ganador.",
-    },
-    {
-      q: "¿Qué pasa si el número ganador no fue vendido?",
-      a: "El sorteo se repite con los resultados de la siguiente lotería, hasta que el premio tenga dueño. Nunca nos quedamos con el premio.",
     },
   ],
 };
