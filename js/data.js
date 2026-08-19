@@ -26,29 +26,14 @@ export const NumberStatus = Object.freeze({
 const NETWORK_DELAY = 250; // ms — simula latencia de red
 const delay = (ms = NETWORK_DELAY) => new Promise((r) => setTimeout(r, ms));
 
-/* ── Generación determinística de estados mock ──────────────
-   Semilla fija → los mismos números vendidos/reservados en cada
-   carga. Cuando exista backend, esto desaparece y los estados
-   llegan de la base de datos. */
-function mulberry32(seed) {
-  return function () {
-    seed |= 0;
-    seed = (seed + 0x6d2b79f5) | 0;
-    let t = Math.imul(seed ^ (seed >>> 15), 1 | seed);
-    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
-    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
-  };
-}
-
+/* ── Estado inicial del tablero ─────────────────────────────
+   Rifa recién lanzada: todos los números disponibles.
+   Cuando exista backend, los estados llegarán de la base de
+   datos y esta función desaparece. */
 function buildMockNumbers() {
-  const rng = mulberry32(20260905);
   const numbers = [];
   for (let n = 1; n <= CONFIG.raffle.totalNumbers; n++) {
-    const r = rng();
-    let status = NumberStatus.AVAILABLE;
-    if (r < 0.3) status = NumberStatus.SOLD;
-    else if (r < 0.41) status = NumberStatus.RESERVED;
-    numbers.push({ number: n, status });
+    numbers.push({ number: n, status: NumberStatus.AVAILABLE });
   }
   return numbers;
 }

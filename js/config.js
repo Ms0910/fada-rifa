@@ -37,7 +37,8 @@ export const CONFIG = {
     /** Fecha objetivo del sorteo (ISO 8601 con zona horaria). La cuenta regresiva usa este valor. */
     drawDate: "2026-09-05T19:00:00-05:00",
     /** Cómo se elige el ganador — se muestra tal cual en la sección del premio. */
-    winningCriteria: "Últimas 3 cifras de la Lotería de Medellín",
+    winningCriteria:
+      "Últimas 2 cifras de la Lotería de Santander (el 00 equivale al 100)",
   },
 
   prize: {
@@ -113,7 +114,7 @@ export const CONFIG = {
   faq: [
     {
       q: "¿Cómo sé que el sorteo es transparente?",
-      a: "El número ganador se define con las últimas cifras de una lotería nacional (no lo elegimos nosotros) y el sorteo se transmite en vivo por nuestras redes. Publicamos el resultado y al ganador el mismo día.",
+      a: "El ganador se define con las últimas 2 cifras de la Lotería de Santander (el 00 equivale al 100): nadie en la fundación puede elegir ni alterar el resultado. Como la rifa se anuncia el sábado 5 de septiembre y la lotería juega los viernes, se toma el sorteo del viernes 4 de septiembre a las 11:00 p.m. Publicamos el resultado y al ganador el mismo día.",
     },
     {
       q: "¿Cómo reservo mis números?",
