@@ -62,8 +62,9 @@ export const CONFIG = {
   stats: {
     dogsInFoundation: 63,           // perritos actualmente en la fundación
     catsRescued: 24,                // gatitos rescatados
-    foodDaysFunded: 210,            // días de alimento que financia esta rifa
-    impact: { foodDays: 210, vetTreatments: 26, recentRescues: 14, adoptions: 38 },
+    // Un número ($10.000) ≈ 2 días de comida de un peludo (~$5.000/día).
+    // Si se venden los 100 números: $1.000.000 COP de meta total.
+    impact: { foodDays: 2, vetTreatments: 26, recentRescues: 14, adoptions: 38 },
   },
 
   stories: [

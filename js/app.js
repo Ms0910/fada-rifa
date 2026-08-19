@@ -206,12 +206,12 @@ function renderStaticContent() {
 }
 
 /* ── Contadores animados de métricas ─────────────────────── */
-function animateCounter(el, target, duration = 1400) {
+function animateCounter(el, target, duration = 1400, format = (v) => v) {
   const start = performance.now();
   const step = (now) => {
     const p = Math.min(1, (now - start) / duration);
     const eased = 1 - Math.pow(1 - p, 3);
-    el.textContent = Math.round(target * eased);
+    el.textContent = format(Math.round(target * eased));
     if (p < 1) requestAnimationFrame(step);
   };
   requestAnimationFrame(step);
@@ -219,17 +219,15 @@ function animateCounter(el, target, duration = 1400) {
 
 function initMetrics(availableCount) {
   const { stats } = CONFIG;
-  const targets = {
-    metricDogs: stats.dogsInFoundation,
-    metricCats: stats.catsRescued,
-    metricAvailable: availableCount,
-    metricFood: stats.foodDaysFunded,
-  };
+  const goal = CONFIG.raffle.pricePerNumber * CONFIG.raffle.totalNumbers;
   const io = new IntersectionObserver(
     (entries) =>
       entries.forEach((e) => {
         if (!e.isIntersecting) return;
-        Object.entries(targets).forEach(([id, v]) => animateCounter($(`#${id}`), v));
+        animateCounter($("#metricDogs"), stats.dogsInFoundation);
+        animateCounter($("#metricCats"), stats.catsRescued);
+        animateCounter($("#metricAvailable"), availableCount);
+        animateCounter($("#metricGoal"), goal, 1400, money);
         io.disconnect();
       }),
     { threshold: 0.4 }
