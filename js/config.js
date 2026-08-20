@@ -17,6 +17,16 @@ export const CONFIG = {
   whatsappNumber: "573144713476",
 
   /**
+   * 🌐 API de estados de los puestos (Cloudflare Worker + D1, ver worker/).
+   * Deja baseUrl vacío ("") para desarrollo local con el mock de data.js.
+   * En producción apunta al Worker, ej:
+   *   baseUrl: "https://fada-rifa-api.<tu-subdominio>.workers.dev"
+   */
+  api: {
+    baseUrl: "",
+  },
+
+  /**
    * 💜 PAGO CON NEQUI — transferencia Nequi → Nequi.
    * Ojo: Nequi NO permite pre-llenar monto/destino desde una URL web;
    * la persona digita el número y el valor en su app. Para cobro

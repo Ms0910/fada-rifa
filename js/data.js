@@ -1,17 +1,21 @@
 /**
  * ═══════════════════════════════════════════════════════════
- *  FADA — Capa de datos (mock)
+ *  FADA — Capa de datos
  *
- *  Simula la API del backend. Todas las funciones son async y
- *  devuelven promesas con latencia artificial, de modo que
- *  reemplazarlas por llamadas fetch() reales no requiere tocar
- *  la UI.
+ *  Los estados de los puestos se leen de la API real
+ *  (Cloudflare Worker + D1, ver worker/) cuando
+ *  CONFIG.api.baseUrl está configurado. Si está vacío o la API
+ *  falla, se usa el mock local para no dejar la página rota.
  *
- *  Endpoints futuros sugeridos:
- *    GET  /api/raffles/current          → getRaffle()
- *    GET  /api/raffles/:id/numbers      → getNumbers()
- *    POST /api/reservations             → createReservation()
- *    POST /api/payments                 → createPayment()
+ *  El flujo de compra es manual: el comprador paga por Nequi,
+ *  confirma por WhatsApp y FADA marca los puestos llamando el
+ *  endpoint de admin del Worker (ver worker/README.md). Por eso
+ *  las reservas siguen siendo locales (solo duran la sesión
+ *  del visitante).
+ *
+ *  Endpoints del Worker:
+ *    GET  /api/numbers        → getNumbers()  (público)
+ *    POST /api/admin/update   → lo usa FADA cuando confirma un pago
  * ═══════════════════════════════════════════════════════════
  */
 
@@ -59,9 +63,30 @@ export async function getRaffle() {
 
 /** Lista completa de números con su estado actual. */
 export async function getNumbers() {
-  await delay();
-  // Copia profunda para que la UI no mute el "backend".
-  return db.numbers.map((n) => ({ ...n }));
+  // Desarrollo local (sin API configurada): mock en memoria.
+  if (!CONFIG.api?.baseUrl) {
+    await delay();
+    // Copia profunda para que la UI no mute el "backend".
+    return db.numbers.map((n) => ({ ...n }));
+  }
+
+  // Producción: estado real desde el Worker (D1). Si la API
+  // falla, se cae al mock para no dejar la página rota.
+  try {
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 5000);
+    const res = await fetch(`${CONFIG.api.baseUrl}/api/numbers`, {
+      signal: controller.signal,
+    });
+    clearTimeout(timeout);
+    if (!res.ok) throw new Error(`API respondió ${res.status}`);
+    const numbers = await res.json();
+    return numbers.map(({ number, status }) => ({ number, status }));
+  } catch (err) {
+    console.warn("[data] No se pudo leer la API; usando estados locales:", err);
+    await delay();
+    return db.numbers.map((n) => ({ ...n }));
+  }
 }
 
 /**

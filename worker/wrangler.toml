@@ -1,0 +1,23 @@
+# ═══════════════════════════════════════════════════════════
+#  FADA — Configuración del Worker (API de la rifa)
+#  Deploy:  npx wrangler deploy   (ver README.md)
+# ═══════════════════════════════════════════════════════════
+
+name = "fada-rifa-api"
+main = "src/index.js"
+compatibility_date = "2026-01-01"
+
+# Base de datos D1 (SQLite). El database_id lo entrega el comando:
+#   npx wrangler d1 create fada-rifa
+[[d1_databases]]
+binding = "DB"
+database_name = "fada-rifa"
+database_id = "REEMPLAZA-CON-EL-ID-QUE-TE-DE-WRANGLER"
+
+[vars]
+# Origen permitido para CORS. En producción pon el dominio de la landing,
+# ej: "https://fada-rifa.netlify.app" (o el dominio propio si lo tienes).
+ALLOWED_ORIGIN = "*"
+
+# El token de admin NO va aquí: se guarda cifrado con
+#   npx wrangler secret put ADMIN_TOKEN
