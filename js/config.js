@@ -36,7 +36,6 @@ export const CONFIG = {
   nequi: {
     phone: "3144713476",            // número Nequi destino
     accountHolder: "Fundación FADA",
-    webUrl: "https://www.nequi.com.co",
   },
 
   raffle: {

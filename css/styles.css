@@ -1294,14 +1294,6 @@ em { font-style: italic; }
 }
 
 /* ── Pago con Nequi ─────────────────────────────────── */
-.btn--nequi {
-  background: #210038;
-  color: var(--white);
-  box-shadow: 0 8px 24px rgba(33, 0, 56, 0.35);
-  margin-bottom: 18px;
-}
-.btn--nequi:hover { background: #32004f; transform: translateY(-2px); }
-
 .nequi-card {
   background: linear-gradient(150deg, #210038 0%, #3d0a5c 70%, #5b1079 100%);
   color: var(--white);

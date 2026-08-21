@@ -524,7 +524,6 @@ async function handleFormSubmit(e) {
   $("#nequiAmount").dataset.raw = String(total);
   $("#nequiHolder").textContent = CONFIG.nequi.accountHolder;
   $("#nequiRef").textContent = state.reservationId;
-  $("#openNequiBtn").href = CONFIG.nequi.webUrl;
 
   gotoStep(2);
 }
