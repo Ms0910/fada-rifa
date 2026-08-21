@@ -299,7 +299,7 @@ function onNumberClick(number, btn) {
     btn.classList.remove("num--shake");
     void btn.offsetWidth;
     btn.classList.add("num--shake");
-    toast(`El número ${pad(number)} está reservado. Intenta en unos minutos.`, "warn");
+    toast(`El número ${pad(number)} ya está reservado por otra persona.`, "warn");
     return;
   }
 
