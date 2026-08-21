@@ -1107,6 +1107,8 @@ em { font-style: italic; }
 }
 .footer__nav a { font-size: 14.5px; transition: color 0.2s; }
 .footer__nav a:hover { color: var(--white); }
+.footer__social-link { display: inline-flex; align-items: center; gap: 9px; }
+.footer__social-link svg { flex-shrink: 0; opacity: 0.85; }
 .footer__bottom {
   border-top: 1px solid rgba(255, 255, 255, 0.1);
   padding: 22px 24px;
