@@ -91,6 +91,7 @@ export const CONFIG = {
       statusLabel: "Listo para adopción",
       text: "Lo arrojaron a la basura para que muriera de moquillo. Sobrevivió, se recuperó por completo y hoy solo le falta una cosa: una familia que lo adopte.",
       image: "img/moquillosurvivor.jpg",
+      focus: "center 15%", // la foto es vertical: sube el encuadre para que se vea la carita completa
     },
     {
       name: "Los Hermanitos",

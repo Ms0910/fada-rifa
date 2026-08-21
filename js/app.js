@@ -177,9 +177,10 @@ function renderStaticContent() {
     .map(
       (s) => `
       <article class="story-card reveal">
-        <div class="story-card__photo">
-          <img src="${s.image}" alt="${s.name}, ${s.statusLabel.toLowerCase()} por FADA" loading="lazy" />
+        <div class="story-card__photo" data-lightbox-open data-src="${s.image}" data-alt="${s.name}, ${s.statusLabel.toLowerCase()} por FADA">
+          <img src="${s.image}" alt="${s.name}, ${s.statusLabel.toLowerCase()} por FADA" loading="lazy" style="object-position: ${s.focus || "center"}" />
           <span class="story-card__status story-card__status--${s.status}">${s.statusLabel}</span>
+          <span class="story-card__zoom" aria-hidden="true">🔍</span>
         </div>
         <div class="story-card__body">
           <h3 class="story-card__name">${s.name}</h3>
@@ -188,6 +189,10 @@ function renderStaticContent() {
       </article>`
     )
     .join("");
+
+  $$("[data-lightbox-open]").forEach((el) =>
+    el.addEventListener("click", () => openLightbox(el.dataset.src, el.dataset.alt))
+  );
 
   // FAQ
   $("#faqList").innerHTML = CONFIG.faq
@@ -633,6 +638,31 @@ function initCheckout() {
   );
 }
 
+/* ── Lightbox: ver imagen de historia maximizada ─────────── */
+const lightbox = () => $("#lightbox");
+
+function openLightbox(src, alt) {
+  const img = $("#lightboxImg");
+  img.src = src;
+  img.alt = alt ?? "";
+  lightbox().classList.add("is-open");
+  lightbox().setAttribute("aria-hidden", "false");
+  document.body.style.overflow = "hidden";
+}
+
+function closeLightbox() {
+  lightbox().classList.remove("is-open");
+  lightbox().setAttribute("aria-hidden", "true");
+  document.body.style.overflow = "";
+}
+
+function initLightbox() {
+  $$("[data-lightbox-close]").forEach((el) => el.addEventListener("click", closeLightbox));
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && lightbox().classList.contains("is-open")) closeLightbox();
+  });
+}
+
 /* ── Refresco periódico del tablero ──────────────────────── */
 const BOARD_REFRESH_MS = 30000;
 
@@ -670,6 +700,7 @@ async function init() {
   initToTop();
   initCountdown();
   initCheckout();
+  initLightbox();
   $("#luckyBtn").addEventListener("click", pickLucky);
 
   // Carga de datos (mock API)
