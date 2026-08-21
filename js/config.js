@@ -54,7 +54,7 @@ export const CONFIG = {
     name: "2 colonias de tu elección",
     approxValue: 200000,            // COP (valor aproximado de las dos colonias)
     description:
-      "Dos colonias originales de las mejores marcas, nuevas y selladas. " +
+      "Dos colonias réplica de las mejores marcas, nuevas y selladas. " +
       "Si ganas, tú eliges las referencias que más te gusten. " +
       "Participa con tu número de la suerte y, de paso, ayuda a los 63 " +
       "perritos y a los gatitos que cuidamos en FADA.",
