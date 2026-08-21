@@ -23,7 +23,7 @@ export const CONFIG = {
    *   baseUrl: "https://fada-rifa-api.<tu-subdominio>.workers.dev"
    */
   api: {
-    baseUrl: "",
+    baseUrl: "https://fada-rifa-api.fada-worker.workers.dev",
   },
 
   /**

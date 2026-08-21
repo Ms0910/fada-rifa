@@ -633,6 +633,36 @@ function initCheckout() {
   );
 }
 
+/* ── Refresco periódico del tablero ──────────────────────── */
+const BOARD_REFRESH_MS = 30000;
+
+async function refreshBoard() {
+  // No interrumpir a quien ya está pagando/confirmando su selección.
+  if (modal().classList.contains("is-open")) return;
+
+  const numbers = await getNumbers();
+  state.numbers = numbers;
+
+  // Si alguno de los números que el visitante tenía elegidos (sin
+  // confirmar aún) fue tomado por otra persona mientras tanto, se
+  // le quita de la selección y se le avisa — igual que al confirmar.
+  const takenWhileSelecting = [...state.selected].filter(
+    (n) => state.numbers[n - 1].status !== NumberStatus.AVAILABLE
+  );
+  if (takenWhileSelecting.length > 0) {
+    takenWhileSelecting.forEach((n) => state.selected.delete(n));
+    toast(
+      `${takenWhileSelecting.map(pad).join(", ")} se acaba${takenWhileSelecting.length > 1 ? "ron" : ""} de reservar. Te lo${takenWhileSelecting.length > 1 ? "s" : ""} quitamos de tu selección.`,
+      "warn",
+      5000
+    );
+  }
+
+  renderGrid();
+  syncSelectionUI();
+  updateProgress();
+}
+
 /* ═══ BOOT ═══════════════════════════════════════════════ */
 async function init() {
   renderStaticContent();
@@ -653,6 +683,7 @@ async function init() {
 
   initReveal();
   window.addEventListener("resize", syncSelectionUI, { passive: true });
+  setInterval(refreshBoard, BOARD_REFRESH_MS);
 }
 
 document.addEventListener("DOMContentLoaded", init);

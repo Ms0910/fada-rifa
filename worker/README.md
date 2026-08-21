@@ -5,9 +5,17 @@ La landing (Netlify) solo lee los estados; los datos del comprador
 (nombre, teléfono, correo) quedan internos y solo se consultan con el
 token de admin.
 
-## Despliegue (una sola vez, ~10 minutos)
+**Ya desplegado.** URL pública:
 
-Requisito: tener Node.js instalado. Todo se hace desde esta carpeta (`worker/`).
+```
+https://fada-rifa-api.fada-worker.workers.dev
+```
+
+`js/config.js` → `CONFIG.api.baseUrl` ya apunta ahí. El `ADMIN_TOKEN` quedó
+guardado como secreto en Cloudflare (no está en este repo) — pídeselo a
+quien hizo el despliegue si lo necesitas.
+
+Si en algún momento hay que reconstruir el servicio desde cero:
 
 ```bash
 # 1. Iniciar sesión en Cloudflare (abre el navegador)
@@ -23,7 +31,8 @@ npx wrangler d1 execute fada-rifa --remote --file=schema.sql
 # 4. Guardar el token de admin (te pedirá escribirlo; inventa uno largo)
 npx wrangler secret put ADMIN_TOKEN
 
-# 5. Desplegar
+# 5. Desplegar (requiere tener un subdominio workers.dev registrado
+#    en la cuenta — se hace una vez desde el dashboard de Cloudflare)
 npx wrangler deploy
 #    → te da la URL: https://fada-rifa-api.<tu-subdominio>.workers.dev
 ```
@@ -38,7 +47,7 @@ Desde el PC con curl, o desde el celular con una app tipo
 
 ```bash
 TOKEN="tu-token-de-admin"
-API="https://fada-rifa-api.<tu-subdominio>.workers.dev"
+API="https://fada-rifa-api.fada-worker.workers.dev"
 
 # Marcar como VENDIDOS los puestos 5 y 12, con datos del comprador
 curl -X POST "$API/api/admin/update" \
@@ -65,7 +74,7 @@ curl "$API/api/admin/spots" -H "Authorization: Bearer $TOKEN"
 El endpoint público que consume la landing es simplemente:
 
 ```
-GET https://fada-rifa-api.<tu-subdominio>.workers.dev/api/numbers
+GET https://fada-rifa-api.fada-worker.workers.dev/api/numbers
 → [{"number":1,"status":"AVAILABLE"},{"number":5,"status":"SOLD"}, ...]
 ```
 

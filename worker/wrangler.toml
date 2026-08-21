@@ -12,7 +12,7 @@ compatibility_date = "2026-01-01"
 [[d1_databases]]
 binding = "DB"
 database_name = "fada-rifa"
-database_id = "REEMPLAZA-CON-EL-ID-QUE-TE-DE-WRANGLER"
+database_id = "693935ee-fdb6-4df8-8e61-51fb0decfa74"
 
 [vars]
 # Origen permitido para CORS. En producción pon el dominio de la landing,
