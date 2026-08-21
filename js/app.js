@@ -547,7 +547,7 @@ function buildWhatsappMessage() {
     `Email: ${c.email}`,
     state.reservationId ? `Reserva: ${state.reservationId}` : "",
     "",
-    "✅ Ya hice la transferencia por Nequi. Te envío el comprobante.",
+    "Quedo pendiente de los siguientes pasos. Si ya hice la transferencia, aquí va el comprobante 👇",
     "Gracias ❤️",
   ]
     .filter(Boolean)
