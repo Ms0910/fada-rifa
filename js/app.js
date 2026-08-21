@@ -165,6 +165,7 @@ function renderStaticContent() {
   $("#prizeDrawDate").textContent = new Intl.DateTimeFormat(CONFIG.raffle.locale, {
     day: "numeric", month: "long", year: "numeric",
   }).format(new Date(CONFIG.raffle.drawDate));
+  $("#prizeResultsLink").href = CONFIG.raffle.resultsUrl;
 
   // Impacto
   $('[data-impact="food"]').textContent = stats.impact.foodDays;

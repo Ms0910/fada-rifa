@@ -43,11 +43,14 @@ export const CONFIG = {
     totalNumbers: 100,              // 1..100
     currency: "COP",
     locale: "es-CO",
-    /** Fecha objetivo del sorteo (ISO 8601 con zona horaria). La cuenta regresiva usa este valor. */
-    drawDate: "2026-09-05T19:00:00-05:00",
+    /** Fecha objetivo del sorteo (ISO 8601 con zona horaria). La cuenta regresiva usa este valor.
+     *  La Lotería de Santander juega todos los viernes a las 11:00 p.m. — por eso es viernes, no sábado. */
+    drawDate: "2026-09-04T23:00:00-05:00",
     /** Cómo se elige el ganador — se muestra tal cual en la sección del premio. */
     winningCriteria:
-      "Últimas 2 cifras de la Lotería de Santander (el 00 equivale al 100)",
+      "Últimas 2 cifras del premio mayor, no la serie (el 00 equivale al 100)",
+    /** Página oficial donde se puede verificar el resultado del sorteo. */
+    resultsUrl: "https://www.loteriasantander.gov.co/resultados/",
   },
 
   prize: {
@@ -118,7 +121,7 @@ export const CONFIG = {
   faq: [
     {
       q: "¿Cómo sé que el sorteo es transparente?",
-      a: "El ganador se define con las últimas 2 cifras de la Lotería de Santander (el 00 equivale al 100): nadie en la fundación puede elegir ni alterar el resultado. Como la rifa se anuncia el sábado 5 de septiembre y la lotería juega los viernes, se toma el sorteo del viernes 4 de septiembre a las 11:00 p.m. Publicamos el resultado y al ganador el mismo día.",
+      a: 'El ganador se define con las últimas 2 cifras del <strong>premio mayor</strong> de la Lotería de Santander — no la serie (el 00 equivale al 100): nadie en la fundación puede elegir ni alterar el resultado. Esta lotería juega todos los viernes a las 11:00 p.m., así que el sorteo que decide todo es el <strong>viernes 4 de septiembre</strong>. Ese mismo día, apenas termine el sorteo, anunciamos el resultado y contactamos al ganador. Puedes verificar el número oficial en <a href="https://www.loteriasantander.gov.co/resultados/" target="_blank" rel="noopener">loteriasantander.gov.co/resultados</a>.',
     },
     {
       q: "¿Cómo reservo mis números?",
