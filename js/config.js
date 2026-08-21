@@ -77,50 +77,41 @@ export const CONFIG = {
   },
 
   stories: [
-    // 📸 Fotos placeholder (Unsplash). Cuando tengas las fotos reales,
-    // guárdalas en la carpeta img/ y cambia cada `image` por su ruta
-    // local, ej: image: "img/luna.jpg" — ver img/README.md
+    // 📸 Fotos reales de la fundación (carpeta img/) — ver img/README.md
     {
-      name: "Luna",
-      status: "recovery", // rescued | recovery | adopted
-      statusLabel: "En recuperación",
-      text: "Fue encontrada en condiciones críticas junto a una carretera. Hoy come sola, gana peso y espera una familia.",
-      image: "https://images.unsplash.com/photo-1543466835-00a7907e9de1?q=80&w=900&auto=format&fit=crop",
+      name: "La Escaladora",
+      status: "rescued", // rescued | recovery | adopted | community
+      statusLabel: "Rescatada",
+      text: "Fue rescatada de la calle y hoy es la alma trepadora de la fundación: no hay estantería, silla o muro que se le resista. Su energía contagia a todo el que la visita.",
+      image: "img/escaladora.jpg",
     },
     {
-      name: "Simón",
-      status: "adopted",
-      statusLabel: "Adoptado",
-      text: "Llegó desconfiado y lleno de miedo. Tres meses después conquistó a su nueva familia… y a su sofá favorito.",
-      image: "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?q=80&w=900&auto=format&fit=crop",
-    },
-    {
-      name: "Rocky",
+      name: "El Sobreviviente",
       status: "rescued",
-      statusLabel: "Rescatado",
-      text: "Vivía atado a un poste. Ahora corre todos los días en el patio de la fundación mientras encuentra hogar.",
-      image: "https://images.unsplash.com/photo-1548767797-d8c844163c4c?q=80&w=900&auto=format&fit=crop",
+      statusLabel: "Listo para adopción",
+      text: "Lo arrojaron a la basura para que muriera de moquillo. Sobrevivió, se recuperó por completo y hoy solo le falta una cosa: una familia que lo adopte.",
+      image: "img/moquillosurvivor.jpg",
     },
     {
-      name: "Mía",
-      status: "adopted",
-      statusLabel: "Adoptada",
-      text: "La recogimos con sus tres gatitos. Todos encontraron hogar. Mía ronronea en brazos de su nueva mamá.",
-      image: "https://images.unsplash.com/photo-1573865526739-10659fec78a5?q=80&w=900&auto=format&fit=crop",
+      name: "Los Hermanitos",
+      status: "rescued",
+      statusLabel: "Buscando hogar",
+      text: "Nacieron en la fundación. Su mamá, una perrita rescatada en embarazo, falleció durante el parto. Hoy son los únicos de la manada que todavía esperan una familia.",
+      image: "img/puppybrothers.jpg",
     },
     {
-      name: "Toby",
+      name: "Piel de Ángel",
       status: "recovery",
       statusLabel: "En recuperación",
-      text: "Un criollito noble que está superando una cirugía de cadera gracias al aporte de personas como tú. Falta poco para que esté listo para adopción.",
-      image: "https://images.unsplash.com/photo-1558788353-f76d92427f16?q=80&w=900&auto=format&fit=crop",
+      text: "Llegó con una afección de piel muy fuerte. Con curaciones diarias y mucho cariño, cada semana se ve un poco mejor en su camino a recuperarse por completo.",
+      image: "img/puppyskin.jpg",
     },
     {
-      name: "Nala",
-      status: "rescued",
-      statusLabel: "Rescatada",
-      text: "Apareció en un parque, desnutrida. Hoy es la primera en saludar a quien visita la fundación.",
-      image: "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?q=80&w=900&auto=format&fit=crop",
+      name: "La Manada FADA",
+      status: "community",
+      statusLabel: "Juntos en FADA",
+      text: "Así se ven muchos de nuestros peludos cuando están en casa: juntos, en confianza y a salvo. Cada número que compras ayuda a que sigan así.",
+      image: "img/allpuppys.jpg",
     },
   ],
 

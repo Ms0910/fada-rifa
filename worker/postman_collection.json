@@ -1,0 +1,128 @@
+{
+  "info": {
+    "name": "FADA — API de la rifa",
+    "description": "Endpoints del Worker (Cloudflare + D1) que guarda el estado de los 100 puestos de la rifa. Ver worker/README.md para más contexto.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "api",
+      "value": "https://fada-rifa-api.fada-worker.workers.dev",
+      "type": "string"
+    },
+    {
+      "key": "token",
+      "value": "PEGA_AQUI_EL_ADMIN_TOKEN",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Público — Ver estados de los números",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{api}}/api/numbers",
+          "host": ["{{api}}"],
+          "path": ["api", "numbers"]
+        },
+        "description": "No requiere autenticación. Devuelve [{ number, status }] para los 100 puestos, sin datos del comprador."
+      },
+      "response": []
+    },
+    {
+      "name": "Admin — Ver tabla completa (con compradores)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "auth": {
+          "type": "bearer",
+          "bearer": [{ "key": "token", "value": "{{token}}", "type": "string" }]
+        },
+        "url": {
+          "raw": "{{api}}/api/admin/spots",
+          "host": ["{{api}}"],
+          "path": ["api", "admin", "spots"]
+        },
+        "description": "Requiere Authorization: Bearer {{token}}. Devuelve todas las columnas, incluyendo nombre, teléfono y correo del comprador."
+      },
+      "response": []
+    },
+    {
+      "name": "Admin — Marcar VENDIDOS (SOLD)",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "auth": {
+          "type": "bearer",
+          "bearer": [{ "key": "token", "value": "{{token}}", "type": "string" }]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"numbers\": [5, 12],\n  \"status\": \"SOLD\",\n  \"name\": \"Laura Gómez\",\n  \"phone\": \"3001234567\",\n  \"email\": \"laura@mail.com\"\n}",
+          "options": { "raw": { "language": "json" } }
+        },
+        "url": {
+          "raw": "{{api}}/api/admin/update",
+          "host": ["{{api}}"],
+          "path": ["api", "admin", "update"]
+        },
+        "description": "Marca los números como vendidos y guarda los datos del comprador."
+      },
+      "response": []
+    },
+    {
+      "name": "Admin — Marcar RESERVADOS",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "auth": {
+          "type": "bearer",
+          "bearer": [{ "key": "token", "value": "{{token}}", "type": "string" }]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"numbers\": [7],\n  \"status\": \"RESERVED\",\n  \"name\": \"Carlos Pérez\",\n  \"phone\": \"3109876543\"\n}",
+          "options": { "raw": { "language": "json" } }
+        },
+        "url": {
+          "raw": "{{api}}/api/admin/update",
+          "host": ["{{api}}"],
+          "path": ["api", "admin", "update"]
+        },
+        "description": "Marca los números como reservados mientras se confirma el pago."
+      },
+      "response": []
+    },
+    {
+      "name": "Admin — Liberar (AVAILABLE)",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "auth": {
+          "type": "bearer",
+          "bearer": [{ "key": "token", "value": "{{token}}", "type": "string" }]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"numbers\": [7],\n  \"status\": \"AVAILABLE\"\n}",
+          "options": { "raw": { "language": "json" } }
+        },
+        "url": {
+          "raw": "{{api}}/api/admin/update",
+          "host": ["{{api}}"],
+          "path": ["api", "admin", "update"]
+        },
+        "description": "Libera el puesto y borra los datos del comprador (se equivocó, no pagó, etc.)."
+      },
+      "response": []
+    }
+  ]
+}

@@ -2,25 +2,25 @@
 
 Pon aquí las fotos reales de los perritos y gatitos de la fundación.
 
-## Nombres esperados
+## Fotos en uso
 
-| Archivo        | Dónde aparece                          |
-| -------------- | -------------------------------------- |
-| `hero.jpg`     | Foto grande del inicio (un peludo protagonista, vertical si puedes) |
-| `luna.jpg`     | Historia de Luna                       |
-| `simon.jpg`    | Historia de Simón                      |
-| `rocky.jpg`    | Historia de Rocky                      |
-| `mia.jpg`      | Historia de Mía                        |
-| `toby.jpg`     | Historia de Toby                       |
-| `nala.jpg`     | Historia de Nala                       |
+| Archivo                | Dónde aparece                                |
+| ----------------------- | --------------------------------------------- |
+| `abuelito_portada.jpg`  | Foto grande del inicio (hero, en `index.html`) |
+| `escaladora.jpg`        | Historia "La Escaladora" (`js/config.js`)     |
+| `moquillosurvivor.jpg`  | Historia "El Sobreviviente" (`js/config.js`)  |
+| `puppybrothers.jpg`     | Historia "Los Hermanitos" (`js/config.js`)    |
+| `puppyskin.jpg`         | Historia "Piel de Ángel" (`js/config.js`)     |
+| `allpuppys.jpg`         | Historia "La Manada FADA" (`js/config.js`)    |
 
-## Cómo activarlas
+## Cómo cambiarlas
 
-Cuando subas una foto, edita `js/config.js` y cambia la URL de Unsplash
-por la ruta local. Por ejemplo:
+La foto del hero se cambia directamente en `index.html`
+(`<figure class="hero__photo">`). Las fotos de historias se cambian en
+`js/config.js`, dentro de `CONFIG.stories`:
 
 ```js
-image: "img/luna.jpg",
+image: "img/escaladora.jpg",
 ```
 
 ## Recomendaciones

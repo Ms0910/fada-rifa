@@ -920,6 +920,7 @@ em { font-style: italic; }
 .story-card__status--adopted { color: var(--brand); }
 .story-card__status--recovery { color: #a06410; }
 .story-card__status--rescued { color: #2b6cb0; }
+.story-card__status--community { color: var(--teal-2); }
 .story-card__body { padding: 22px 24px 26px; }
 .story-card__name {
   font-family: var(--font-display);
